@@ -1,13 +1,21 @@
-import IChoicesSetup from "./IChoicesSetup";
+import IChoicesSetup from './IChoicesSetup';
 
 export default class ChoicesSetup implements IChoicesSetup {
-  constructor(private readonly ports: string[]) {}
+  private readonly choices: { name: string; value: string }[];
 
-  private setChoice(port: string): { name: string; value: string } {
+  constructor(private readonly ports: string[]) {
+    this.choices = this.setChoices();
+  }
+
+  private formatChoice(port: string): { name: string; value: string } {
     return { name: port, value: port };
   }
 
-  setChoices(): { name: string; value: string }[] {
-    return this.ports.map((port) => this.setChoice(port));
+  private setChoices(): { name: string; value: string }[] {
+    return this.ports.map((port) => this.formatChoice(port));
+  }
+
+  getChoices(): { name: string; value: string }[] {
+    return this.choices;
   }
 }

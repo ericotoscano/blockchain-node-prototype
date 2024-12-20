@@ -1,3 +1,3 @@
 export default interface IChoicesSetup {
-  setChoices(): { name: string; value: string }[];
+  getChoices(): { name: string; value: string }[];
 }
