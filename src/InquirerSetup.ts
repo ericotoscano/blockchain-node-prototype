@@ -1,6 +1,7 @@
-import IChoicesSetup from './IChoicesSetup';
+import IInquirerSetup from './IInquirerSetup';
 
-export default class ChoicesSetup implements IChoicesSetup {
+export default class InquirerSetup implements IInquirerSetup {
+  private readonly message: string = `Select one port number to use in your localhost blockchain node`;
   private readonly choices: { name: string; value: string }[];
 
   constructor(private readonly ports: string[]) {
@@ -13,6 +14,10 @@ export default class ChoicesSetup implements IChoicesSetup {
 
   private setChoices(): { name: string; value: string }[] {
     return this.ports.map((port) => this.formatChoice(port));
+  }
+
+  getMessage(): string {
+    return this.message;
   }
 
   getChoices(): { name: string; value: string }[] {
